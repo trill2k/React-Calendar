@@ -1,2 +1,2 @@
 # React-Calendar
-Created with CodeSandbox
+Created for the 'Calendar' page on the new website.
