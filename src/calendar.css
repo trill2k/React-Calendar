@@ -1,0 +1,276 @@
+/* overall layout */
+.calendar-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* left side */
+.calendar-main {
+  flex: 2;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+}
+
+/* right side panel */
+.event-panel {
+  flex: 1;
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 8px;
+  min-height: 200px;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+}
+
+.event-panel-title {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.event-panel-placeholder {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.event-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+}
+
+.event-list-item {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #ffffff;
+  margin-bottom: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.event-list-name {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.event-list-meta {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* controls / header row */
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.controls-left,
+.controls-center,
+.controls-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* dropdowns */
+.control-select {
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  padding: 6px 12px;
+  font-size: 13px;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+/* buttons */
+
+.btn {
+  padding: 6px 14px;
+  font-size: 13px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-outline {
+  background: #ffffff;
+  border-color: #ce1126;
+  color: #ce1126;
+  border-radius: 8px;
+}
+
+.btn-outline:hover {
+  background: #e7e7e779;
+}
+
+.icon-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn:hover {
+  background: #e7e7e7;
+}
+
+.year-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.year-label {
+  font-weight: 600;
+}
+
+/* calendar grid */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.day-label {
+  font-weight: 600;
+  text-align: center;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.cell {
+  background: #f1f5f9;
+  padding: 6px;
+  min-height: 90px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cell.today {
+  border: 2px solid #0ea5e9;
+}
+
+.cell.empty {
+  background: transparent;
+  cursor: default;
+}
+
+.cell-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.day-number {
+  font-weight: 600;
+  font-size: 12px;
+}
+
+/* small red dot to indicate events */
+.event-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background: #ce1126; /* ACRM red */
+  display: none; /* visible on small screens via media query */
+}
+
+/* full event pill (desktop) */
+
+.event-pill {
+  background: #ce112721;
+  color: rgb(0, 0, 0);
+
+  padding: 6px 8px;
+  border-radius: 8px;
+  margin-bottom: 2px;
+  font-size: 11px;
+}
+.event-list-link {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: #ce1126;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.event-list-link:hover {
+  text-decoration: underline;
+}
+.search-input {
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  padding: 6px 12px;
+  font-size: 13px;
+  background: #ffffff;
+  min-width: 200px;
+}
+
+/* ---------- Responsive tweaks ---------- */
+
+@media (max-width: 900px) {
+  /* stack calendar + panel vertically */
+  .calendar-layout {
+    flex-direction: column;
+  }
+
+  .calendar-main,
+  .event-panel {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .controls-left,
+  .controls-center,
+  .controls-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .filters {
+    justify-content: flex-end;
+  }
+
+  /* show only red dots in cells on mobile, hide full event list */
+  .event-dot {
+    display: inline-block;
+  }
+
+  .event-pill {
+    display: none;
+  }
+
+  .cell {
+    min-height: 60px;
+  }
+}
